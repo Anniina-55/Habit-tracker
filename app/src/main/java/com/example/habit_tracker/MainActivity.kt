@@ -7,14 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.habit_tracker.navigation.AppNavigation
 import com.example.habit_tracker.ui.theme.HabittrackerTheme
 import com.example.habit_tracker.viewModel.HabitTrackerViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.habit_tracker.navigation.AppTopBar
+import com.example.habit_tracker.navigation.Screens
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -24,12 +24,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             HabittrackerTheme {
                 val navController = rememberNavController() // initialize NavController
-                val habitTrackerViewModel: HabitTrackerViewModel =
-                    viewModel() //and initialize ViewModel
+                val habitTrackerViewModel: HabitTrackerViewModel = viewModel() //and initialize ViewModel
 
                 Scaffold(
                     topBar = {
-                        TopAppBar(title = { Text("Habit tracker") })
+                        AppTopBar(
+                            navController = navController
+                        )
                     }
                 ) { paddingValues ->
                     AppNavigation(
