@@ -1,10 +1,13 @@
 package com.example.habit_tracker.model
 
-import java.time.LocalDate
-
 data class Weather(
-    val date: LocalDate,
-    val temperature: Double,
+    val temp_c: Double,
     val humidity: Double,
-    val windSpeed: Double,
+    val wind_kph: Double,
+    val condition: WeatherCondition
+)
+
+data class WeatherCondition(
+    val text: String,
+    val icon: String
 )
