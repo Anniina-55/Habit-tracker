@@ -15,6 +15,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(navController: NavController ) {
+
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
     val showBack = currentRoute != Screens.HOME
@@ -22,7 +23,8 @@ fun AppTopBar(navController: NavController ) {
     // set title dynamically based on the current route
     val title = when {
         currentRoute == Screens.HOME -> "Habit tracker"
-        currentRoute?.startsWith("${Screens.HABITS}/") == true -> "Habit list"
+        currentRoute == "${Screens.HABITS}/{day}" -> "Habit list"
+        currentRoute == "${Screens.PLANT}/{selectedDay}" -> "Daily plant"
         else -> "Habit tracker"
     }
 
