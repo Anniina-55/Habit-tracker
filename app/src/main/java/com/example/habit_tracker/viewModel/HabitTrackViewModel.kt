@@ -1,8 +1,12 @@
 package com.example.habit_tracker.viewModel
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.lifecycle.ViewModel
+import com.example.habit_tracker.logic.calculateProgress
+import com.example.habit_tracker.logic.generatePlant
 import com.example.habit_tracker.model.Habit
+import com.example.habit_tracker.model.PlantPartInstance
 import com.example.habit_tracker.model.WeekDay
 
 // ViewModel holds the app’s state for habits and provides functions to access and modify them
@@ -23,20 +27,29 @@ class HabitTrackerViewModel : ViewModel() {
         }
 
     }
+
     fun addHabit(habit: Habit) {
-            habits.add(habit)
-        }
+        habits.add(habit)
+    }
+
     fun deleteHabit(habitId: Int) {
         habits.removeIf { it.id == habitId }
     }
 
     fun getProgressForDay(day: WeekDay): Float {
         val dayHabits = getHabitsForDay(day)
-
         if (dayHabits.isEmpty()) return 0f
-
         val completed = dayHabits.count { it.completed }
+        val percent = calculateProgress(completed, dayHabits.size)
+        return percent / 100f
+    }
 
-        return completed.toFloat() / dayHabits.size.toFloat()
+    private val plants = mutableStateMapOf<WeekDay, List<PlantPartInstance>>() // keeps internally track of daily generated plants
+    val dailyPlants: Map<WeekDay, List<PlantPartInstance>> get() = plants // public access to plants
+
+    //
+    fun getPlantForDay(day: WeekDay): List<PlantPartInstance> {
+        // if plant hasn't been generated for selected day as key -> generate and save
+        return plants.getOrPut(day) { generatePlant() }
     }
 }
