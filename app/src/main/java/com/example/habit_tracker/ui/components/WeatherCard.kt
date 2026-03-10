@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,33 +17,37 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.habit_tracker.model.Weather
 
 @Composable
 fun WeatherCard(weather: Weather, modifier: Modifier = Modifier) {
 
+    val weatherTextStyle = MaterialTheme.typography.bodyLarge.copy(fontSize = 16.sp, color = Color.Black)
+
     Card(
         modifier = modifier
             .fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFCFF0FF)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
     ) {
         Column(
             modifier = Modifier
                 .padding(12.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Text(
-                text = "Weather",
-                modifier = Modifier.padding(bottom = 8.dp),
-                fontWeight = FontWeight.Bold
+                text = "Weather\n",
+                modifier = Modifier.padding(8.dp),
+                fontWeight = FontWeight.Bold,
+                style = weatherTextStyle
             )
-            Text(text = "Temperature is ${weather.temp_c} °C")
-            Text(text = "Humidity is ${weather.humidity} %")
-            Text(text = "Wind speed is ${weather.wind_kph} m/s")
-            Text(text = weather.condition.text)
+            Text(text = "Temperature:  ${weather.temp_c} °C", style = weatherTextStyle)
+            Text(text = "Humidity:  ${weather.humidity} %", style = weatherTextStyle)
+            Text(text = "Wind speed: ${weather.wind_kph} m/s\n", style = weatherTextStyle)
+            Text(text = weather.condition.text, style = weatherTextStyle)
             Image(
                 painter = rememberAsyncImagePainter("https:" + weather.condition.icon),
                 contentDescription = weather.condition.text,

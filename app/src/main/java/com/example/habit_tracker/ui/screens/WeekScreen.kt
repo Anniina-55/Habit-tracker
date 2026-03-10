@@ -1,13 +1,16 @@
 package com.example.habit_tracker.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +24,8 @@ import java.time.format.DateTimeFormatter
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
+import com.example.habit_tracker.ui.theme.LightGreen
 import java.time.LocalDate
 
 @Composable
@@ -35,7 +40,7 @@ fun WeekScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -56,14 +61,15 @@ fun WeekScreen(
             WeatherCard(weather = weather)
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Select day to set and track your habits",
+            text = "Select day\n to set and track your habits",
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .fillMaxWidth(),
-            style = MaterialTheme.typography.titleLarge,
+            fontSize = 20.sp,
+            style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center
         )
         val days = WeekDay.entries // from WeekDay model
