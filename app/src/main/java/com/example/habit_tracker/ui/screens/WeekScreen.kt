@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.sp
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import androidx.compose.ui.res.stringResource
+import com.example.habit_tracker.R
 
 @Composable
 // renders buttons for each day of the week and passes the selected day to HabitListScreen
@@ -46,12 +48,12 @@ fun WeekScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Welcome! ✨",
+            text = stringResource(id = R.string.welcome_message),
             modifier = Modifier.padding(bottom = 16.dp),
             style = MaterialTheme.typography.titleLarge,
         )
         Text(
-            text = "Today is $todayFormatted",
+            text = stringResource(id = R.string.today_is, todayFormatted),
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 12.dp)
         )
@@ -64,7 +66,7 @@ fun WeekScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Set and track your daily habits:",
+            text = stringResource(id = R.string.home_screen_title),
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .fillMaxWidth(),
