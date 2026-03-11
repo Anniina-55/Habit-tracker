@@ -24,6 +24,7 @@ Daily Habit Tracker is an Android app for tracking your daily habits. Users can 
     </tr>
 </table>
 
+
 ## Implementation details
 
 - Built with Jetpack Compose for UI
