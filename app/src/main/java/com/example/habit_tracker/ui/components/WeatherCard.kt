@@ -49,7 +49,7 @@ fun WeatherCard(weather: Weather, modifier: Modifier = Modifier) {
             Text(text = "Wind speed: ${weather.wind_kph} m/s\n", style = weatherTextStyle)
             Text(text = weather.condition.text, style = weatherTextStyle)
             Image(
-                painter = rememberAsyncImagePainter("https:" + weather.condition.icon),
+                painter = rememberAsyncImagePainter(weather.condition.icon),
                 contentDescription = weather.condition.text,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier.size(64.dp)
