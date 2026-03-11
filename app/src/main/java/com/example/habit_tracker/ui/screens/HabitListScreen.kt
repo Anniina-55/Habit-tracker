@@ -32,6 +32,8 @@ import com.example.habit_tracker.navigation.Screens
 import com.example.habit_tracker.ui.components.HabitList
 import com.example.habit_tracker.ui.components.ShowProgress
 import com.example.habit_tracker.viewModel.HabitTrackerViewModel
+import androidx.compose.ui.res.stringResource
+import com.example.habit_tracker.R
 
 // here HabitList composable is rendered and list of habits for specific day is fetched through ViewModel
 @Composable
@@ -44,7 +46,7 @@ fun HabitListScreen(
     var newHabitName by remember { mutableStateOf("") }
 
     Text(
-        text = "Your habits for $selectedDay",
+        text = stringResource(id = R.string.habit_list_title, selectedDay),
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.padding(16.dp).fillMaxWidth(),
         textAlign = TextAlign.Center
@@ -67,7 +69,7 @@ fun HabitListScreen(
                 TextField(
                     value = newHabitName,
                     onValueChange = { newHabitName = it },
-                    placeholder = { Text("Enter habit") },
+                    placeholder = { Text(stringResource(id = R.string.text_field_placeholder)) },
                     singleLine = true,
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions.Default.copy(
@@ -96,7 +98,7 @@ fun HabitListScreen(
                         }
                     }
                 ) {
-                    Text("Add") // btn label
+                    Text(stringResource(id = R.string.add_btn)) // btn label
                 }
             }
 
@@ -133,7 +135,7 @@ fun HabitListScreen(
                 )
             {
                 Text(
-                    "View your daily plant",
+                    text = stringResource(id = R.string.plant_screen_nav_btn),
                     style = MaterialTheme.typography.bodyLarge
                 )
             }

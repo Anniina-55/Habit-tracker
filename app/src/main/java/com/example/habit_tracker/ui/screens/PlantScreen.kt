@@ -14,6 +14,8 @@ import com.example.habit_tracker.model.WeekDay
 import com.example.habit_tracker.ui.components.PlantDisplay
 import com.example.habit_tracker.ui.components.ShowProgress
 import com.example.habit_tracker.viewModel.HabitTrackerViewModel
+import androidx.compose.ui.res.stringResource
+import com.example.habit_tracker.R
 
 @Composable
 fun PlantScreen(
@@ -32,9 +34,9 @@ fun PlantScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (progress == 1f) {
-            Text("Great job with your habits for ${day}!")
+            Text( stringResource(id = R.string.full_progress_text, selectedDay))
         } else {
-            Text("Keep going to grow your plant!")
+            Text(stringResource(id = R.string.low_progress_text))
         }
         Spacer(modifier = Modifier.height(8.dp))
 

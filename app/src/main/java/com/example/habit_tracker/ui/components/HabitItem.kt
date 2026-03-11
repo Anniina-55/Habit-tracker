@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.habit_tracker.model.Habit
+import androidx.compose.ui.res.stringResource
+import com.example.habit_tracker.R
 
 @Composable
 // parameters received from HabitList
@@ -54,7 +56,7 @@ fun HabitItem(
                     onClick = onDelete,
                     modifier = Modifier.padding(end = 8.dp),
                 ) {
-                    Text("Delete")
+                    Text(stringResource(id = R.string.delete_btn))
                 }
             }
     }
