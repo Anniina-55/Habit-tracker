@@ -16,6 +16,8 @@ import kotlin.time.Duration.Companion.minutes
 // ViewModel for Weather data
 class WeatherViewModel : ViewModel() {
     val weatherToday = mutableStateOf<Weather?>(null)
+    val isLoading = mutableStateOf(true)
+    val errorMessage = mutableStateOf<String?>(null)
 
     init {
         weatherUpdate() //start coroutine to update weather data
@@ -30,6 +32,9 @@ class WeatherViewModel : ViewModel() {
         }
     }
     private suspend fun loadWeatherToday() {
+        isLoading.value = true
+        errorMessage.value = null
+
         // fetch data from API and update state
             try {
                 val response = RetrofitInstance.api.getWeather(
@@ -52,19 +57,22 @@ class WeatherViewModel : ViewModel() {
                     )
                 )
 
-            // catch errors and replace with default values
+            // catch errors
             } catch (e: Exception) {
                 Log.e("WeatherViewModel", "Failed to fetch weather", e)
-
-                weatherToday.value = Weather(
+                errorMessage.value = "Failed to fetch weather data"
+                // errors could be replaced by a default weather object with placeholders
+                /*weatherToday.value = Weather(
                     temp_c = 0.0,
                     humidity = 0.0,
                     wind_kph = 0.0,
                     condition = WeatherCondition(
                         text = "Unknown",
-                        icon = "unknown"
-                    )
-                )
+                        icon = "" )
+                )*/
+            }
+            finally {
+                isLoading.value = false
             }
         }
     }

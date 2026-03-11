@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.habit_tracker.R
 
 @Composable
@@ -33,7 +35,7 @@ import com.example.habit_tracker.R
 fun WeekScreen(
     modifier: Modifier = Modifier,
     onDaySelected: (String) -> Unit,
-    weatherViewModel: WeatherViewModel
+    weatherViewModel: WeatherViewModel = viewModel()
 ) {
 
     val today = Calendar.getInstance().time
@@ -58,9 +60,17 @@ fun WeekScreen(
             modifier = Modifier.padding(bottom = 12.dp)
         )
 
-
-        weatherViewModel.weatherToday.value?.let { weather ->
-            WeatherCard(weather = weather)
+        // fetch weather data from ViewModel and display loading or error message if failed
+        if (weatherViewModel.isLoading.value) {
+            CircularProgressIndicator()
+        } else if (weatherViewModel.errorMessage.value != null) {
+            Text(
+                weatherViewModel.errorMessage.value!!,
+                color = MaterialTheme.colorScheme.error
+            )
+        } else {
+            weatherViewModel.weatherToday.value?.let { weather ->
+                WeatherCard(weather = weather) }
         }
 
         Spacer(modifier = Modifier.height(24.dp))
