@@ -3,6 +3,7 @@ package com.example.habit_tracker.navigation
 import androidx.navigation.compose.NavHost
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.habit_tracker.ui.screens.HabitListScreen
@@ -36,7 +37,7 @@ fun AppNavigation(
         composable(Screens.HOME) {
             WeekScreen(
                 modifier = modifier,
-                weatherViewModel = WeatherViewModel(),
+                weatherViewModel = viewModel(),
                 onDaySelected = { day ->
                     navController.navigate("${Screens.HABITS}/$day")
                 }
@@ -54,7 +55,6 @@ fun AppNavigation(
         }
         composable(
             route = "${Screens.PLANT}/{selectedDay}",
-           // arguments = listOf(navArgument("selectedDay") { type = NavType.StringType })
         ) { backStackEntry ->
             val day = backStackEntry.arguments?.getString("selectedDay") ?: "MONDAY"
             PlantScreen(

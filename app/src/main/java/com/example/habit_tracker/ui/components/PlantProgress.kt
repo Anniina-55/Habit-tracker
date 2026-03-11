@@ -14,16 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.habit_tracker.model.PlantPart
-import com.example.habit_tracker.model.WeekDay
+import com.example.habit_tracker.model.PlantPartInstance
 import com.example.habit_tracker.ui.theme.LightGreen
-import com.example.habit_tracker.viewModel.HabitTrackerViewModel
 
 
 @Composable
-// gets plant parts from ViewModel and renders them, day is passed down from HabitListScreen
-fun PlantDisplay(viewModel: HabitTrackerViewModel, day: WeekDay) {
-    val plantParts = viewModel.getPlantForDay(day)
-    val progress = viewModel.getProgressForDay(day)
+fun PlantDisplay(
+    plantParts: List<PlantPartInstance>,
+    progress: Float
+) {
 
     Box(
         modifier = Modifier

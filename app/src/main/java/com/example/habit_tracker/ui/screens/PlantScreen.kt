@@ -25,6 +25,8 @@ fun PlantScreen(
 ) {
     val day = WeekDay.valueOf(selectedDay)
     val progress = habitViewModel.getProgressForDay(day)
+    val plantParts = habitViewModel.getPlantForDay(day)
+
 
     Column(
         modifier = modifier
@@ -48,6 +50,6 @@ fun PlantScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        PlantDisplay(viewModel = habitViewModel, day = day)
+        PlantDisplay(plantParts = plantParts, progress = progress)
     }
 }
