@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Habit-tracker</string>
+    <string name="welcome_message">Welcome! ✨</string>
+    <string name="today_is">Today is %1$s</string>
+    <string name="weather_title">Weather</string>
+    <string name="temperature">Temperature: %1$s °C</string>
+    <string name="humidity">Humidity: %1$s %%</string>
+    <string name="wind_speed">Wind speed: %1$s m/s</string>
+    <string name="condition">%1$s</string>
+    <string name="home_screen_title">Set and track your daily habits:</string>
+    <string name="habit_list_title">Your habits for %1$s</string>
+    <string name="text_field_placeholder">Enter habit</string>
+    <string name="add_btn">Add</string>
+    <string name="delete_btn">Delete</string>
+    <string name="plant_screen_nav_btn">View your daily plant</string>
+    <string name="low_progress_text">Keep going to grow your plant!</string>
+    <string name="full_progress_text">Great job with your habits for %1$s!</string>
+
 </resources>
