@@ -4,9 +4,7 @@ import androidx.navigation.compose.NavHost
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.example.habit_tracker.ui.screens.HabitListScreen
 import com.example.habit_tracker.ui.screens.PlantScreen
 import com.example.habit_tracker.ui.screens.WeekScreen
