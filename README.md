@@ -23,6 +23,7 @@ Daily Habit Tracker is an Android app for tracking your daily habits. Users can 
         <td><img src="another-plant-2.png" width="200" height="auto"></td>
     </tr>
 </table>
+![img.png](img.png)
 
 ## Implementation details
 
